@@ -2,7 +2,7 @@
     <button @click="load = !load"
             class="w-full flex justify-between focus:outline-none items-center text-blue-400 h-10 pl-1 hover:bg-gray-200 rounded-lg cursor-pointer">
                 <span class="flex items-center">
-               <i class="fas fa-cog mr-2"></i>
+            <i class="fab fa-product-hunt mr-2"></i>
                 <span class="text-gray-700">Products</span>
 
 </span>
@@ -33,20 +33,21 @@
     </button>
     <transition name="slide">
         <div v-if="load" >
+                <a
+                    href="/stock/users"
+                    class="py-3 flex justify-center items-center text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
+                >
+                    <i class="fas fa-angle-double-right mr-2"></i>
+                    Add Product
+                </a>
 
-            <a
-                href="/stock/users"
-                class="py-3 flex justify-center  text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
-            >
 
-               Add Product
-            </a>
 
             <a
                 href="/stock/categories"
-                class="py-3 flex justify-center  text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
+                class="py-3 flex justify-center items-center text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
             >
-
+                <i class="fas fa-angle-double-right mr-2"></i>
                 All Products
             </a>
 

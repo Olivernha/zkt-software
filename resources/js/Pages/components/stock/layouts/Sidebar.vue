@@ -40,12 +40,12 @@
                 >
                     <div class="flex flex-wrap">
                         <div class="w-6/12">
-                            <router-link
+                            <a
                                 class="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                                 to="/"
                             >
                                 Vue Notus
-                            </router-link>
+                            </a>
                         </div>
                         <div class="w-6/12 flex justify-end">
                             <button
@@ -72,14 +72,14 @@
 
                 <hr class="my-4 md:min-w-full"/>
                 <div>
-                    <button
+                    <inertia-link :href="route('stock.index')"
                         class="w-full flex justify-between focus:outline-none items-center text-blue-400 h-10 pl-1 hover:bg-gray-200 rounded-lg cursor-pointer">
                         <div class="flex items-center">
                             <i class="fas fa-tachometer-alt mr-2"></i>
                             <span class="text-gray-700">Dashboard</span>
                         </div>
 
-                    </button>
+                    </inertia-link>
                 </div>
                 <div>
                     <button

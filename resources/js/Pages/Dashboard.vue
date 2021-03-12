@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div     class="justify-center my-8 select-none flex">
-                    <div  v-if="role === 'subscriber'" class="alert flex flex-row items-center bg-blue-200 p-5 rounded border-b-2 border-blue-300">
+                    <div  v-if="$page.props.role === 'subscriber'" class="alert flex flex-row items-center bg-blue-200 p-5 rounded border-b-2 border-blue-300">
                         <div class="alert-icon flex items-center bg-blue-100 border-2 border-blue-500 justify-center h-10 w-10 flex-shrink-0 rounded-full">
 				<span class="text-blue-500">
 					<svg fill="currentColor"
@@ -37,14 +37,14 @@
                             class="py-3 px-6 md:mx-12 shadow-md no-underline rounded-full bg-blue-900 text-white font-sans font-semibold text-sm border-blue btn-primary hover:text-white hover:bg-blue-500 focus:outline-none active:shadow-none mr-2">
                             Stock
                         </inertia-link>
-                        <inertia-link
+                        <a
                             class="py-3 px-6 md:mx-12  shadow-md no-underline rounded-full bg-green-900 text-white font-sans font-semibold text-sm border-greeen btn-primary hover:text-white hover:bg-green-500 focus:outline-none active:shadow-none mr-2">
                             HR
-                        </inertia-link>
-                        <inertia-link
+                        </a>
+                        <a
                             class="py-3 px-6 md:mx-12  shadow-md no-underline rounded-full bg-red-900 text-white font-sans font-semibold text-sm border-red btn-primary hover:text-white hover:bg-red-500 focus:outline-none active:shadow-none">
                             Danger
-                        </inertia-link>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,11 +60,6 @@ export default {
     components: {
         AppLayout,
         Welcome,
-    },
-    computed: {
-        role() {
-            return this.$page.props.role;
-        }
     }
 }
 </script>

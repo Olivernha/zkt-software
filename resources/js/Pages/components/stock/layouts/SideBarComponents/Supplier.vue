@@ -34,21 +34,21 @@
     <transition name="slide">
         <div v-if="load" >
 
-            <a
-                href="/stock/users"
+            <inertia-link  :href="route('supplier.create')"
+
                 class="py-3 flex justify-center  text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
             >
 
                 Add Suppliers
-            </a>
+            </inertia-link>
 
-            <a
-                href="/stock/categories"
+            <inertia-link
+                :href="route('supplier.index')"
                 class="py-3 flex justify-center  text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
             >
 
                 All Suppliers
-            </a>
+            </inertia-link>
 
         </div>
     </transition>
