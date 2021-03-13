@@ -28,6 +28,6 @@
         "@popperjs/core": "2.5.1"
     },
     "dependencies": {
-        "noty": "^3.2.0-beta-deprecated"
+        "sweetalert2": "^10.15.5"
     }
 }

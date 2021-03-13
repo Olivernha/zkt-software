@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div     class="justify-center my-8 select-none flex">
-                    <div  v-if="$page.props.role === 'subscriber'" class="alert flex flex-row items-center bg-blue-200 p-5 rounded border-b-2 border-blue-300">
+                    <div v-if="$page.props.role === 'subscriber'" class="alert flex flex-row items-center bg-blue-200 p-5 rounded border-b-2 border-blue-300">
                         <div class="alert-icon flex items-center bg-blue-100 border-2 border-blue-500 justify-center h-10 w-10 flex-shrink-0 rounded-full">
 				<span class="text-blue-500">
 					<svg fill="currentColor"

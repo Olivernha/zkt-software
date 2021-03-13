@@ -15,7 +15,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
+            Inertia::share([
+
+                'role' => function () {
+
+                    return    Auth::check() ?  Auth::user()->with('role')->first()->role->name : '';
+                }
+            ]);
+
+
 
     }
 

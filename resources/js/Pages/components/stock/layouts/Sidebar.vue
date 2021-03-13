@@ -14,12 +14,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!-- Brand -->
-            <inertia-link
+            <a
                 class="flex justify-center"
                 to="/"
             >
                 <img src="/images/logo.jpg" class="h-16" alt="">
-            </inertia-link>
+            </a>
             <!-- User -->
             <ul class="md:hidden items-center flex flex-wrap list-none">
                 <li class="inline-block relative">

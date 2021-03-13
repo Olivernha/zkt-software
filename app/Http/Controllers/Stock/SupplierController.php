@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Stock;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Supplier;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
 
 class SupplierController extends Controller
 {
@@ -17,8 +18,8 @@ class SupplierController extends Controller
     public function index()
     {
         //
-        $supplier = Supplier::all();
-        return Inertia::render('components/stock/supplier/index');
+        $suppliers = Supplier::all();
+        return Inertia::render('components/stock/supplier/index',['suppliers'=>$suppliers]);
     }
 
     /**
@@ -40,44 +41,32 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validateData = $request->validate([
-            'name' => 'required|unique:suppliers|max:255',
-            'email' => 'required',
-            'phone' => 'required|unique:suppliers',
-
-        ]);
 
         if ($request->photo) {
-            $position = strpos($request->photo, ';');
-            $sub = substr($request->photo, 0, $position);
-            $ext = explode('/', $sub)[1];
+            $file_name = time().'_'.$request->photo->getClientOriginalName();
+            $file_path = $request->file('photo')->storeAs('uploads', $file_name);
 
-            $name = time().".".$ext;
-            $img = Image::make($request->photo)->resize(240,200);
-            $upload_path = 'frontend/supplier/';
-            $image_url = $upload_path.$name;
-            $img->save($image_url);
 
             $supplier = new Supplier;
             $supplier->name = $request->name;
             $supplier->email = $request->email;
             $supplier->phone = $request->phone;
-            $supplier->shopname = $request->shopname;
+            $supplier->company = $request->company;
             $supplier->address = $request->address;
-            $supplier->photo = $image_url;
+            $supplier->photo =   $file_path;
             $supplier->save();
         }else{
             $supplier = new Supplier;
-            $supplier->name = $request->name;
-            $supplier->email = $request->email;
-            $supplier->phone = $request->phone;
-            $supplier->shopname = $request->shopname;
+            $supplier->name = $request->name ;
+            $supplier->email = $request->email ;
+            $supplier->phone = $request->phone ;
+            $supplier->company = $request->company;
             $supplier->address = $request->address;
 
             $supplier->save();
 
         }
+        return redirect()->route('supplier.create');
     }
 
     /**
@@ -89,8 +78,8 @@ class SupplierController extends Controller
     public function show($id)
     {
         //
-        $supplier = DB::table('suppliers')->where('id',$id)->first();
-        return response()->json($supplier);
+//        $supplier = DB::table('suppliers')->where('id',$id)->first();
+//        return response()->json($supplier);
     }
 
     /**
@@ -102,6 +91,9 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
+        $supplier=Supplier::find($id)->first();
+        return Inertia::render('components/stock/supplier/edit',['supplier'=>$supplier]);
+
     }
 
     /**
@@ -114,39 +106,27 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = array();
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['phone'] = $request->phone;
-        $data['shopname'] = $request->shopname;
-        $data['address'] = $request->address;
-
-        $image = $request->newphoto;
+        $supplier=Supplier::where('id', $id)->first();
+        $image = $request->photo;
 
         if ($image) {
-            $position = strpos($image, ';');
-            $sub = substr($image, 0, $position);
-            $ext = explode('/', $sub)[1];
-
-            $name = time().".".$ext;
-            $img = Image::make($image)->resize(240,200);
-            $upload_path = 'frontend/supplier/';
-            $image_url = $upload_path.$name;
-            $success = $img->save($image_url);
-
-            if ($success) {
-                $data['photo'] = $image_url;
-                $img = DB::table('suppliers')->where('id',$id)->first();
-                $image_path = $img->photo;
-                $done = unlink($image_path);
-                $user  = DB::table('suppliers')->where('id',$id)->update($data);
-            }
-
-        }else{
-            $oldphoto = $request->photo;
-            $data['photo'] = $oldphoto;
-            $user = DB::table('suppliers')->where('id',$id)->update($data);
+            $file_name = time().'_'.$request->photo->getClientOriginalName();
+            $file_path = $request->file('photo')->storeAs('uploads', $file_name);
+            $image_path = $supplier->photo;
+            $done = unlink($image_path);
         }
+        $supplier->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'company'=>$request->company,
+            'address' => $request->address,
+            'photo'=>$file_path || null
+
+        ]);
+
+        return redirect()->route('supplier.index');
+
     }
 
     /**
