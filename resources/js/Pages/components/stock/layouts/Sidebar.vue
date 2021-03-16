@@ -44,7 +44,7 @@
                                 class="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                                 to="/"
                             >
-                                Vue Notus
+                               ZKT Co.,Ltd
                             </a>
                         </div>
                         <div class="w-6/12 flex justify-end">
@@ -58,19 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Form -->
-                <form class="mt-6 mb-4 md:hidden">
-                    <div class="mb-3 pt-0">
-                        <input
-                            type="text"
-                            placeholder="Search"
-                            class="px-3 py-2 h-12 border border-solid border-gray-600 placeholder-gray-400 text-gray-700 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                        />
-                    </div>
-                </form>
 
-
-                <hr class="my-4 md:min-w-full"/>
                 <div>
                     <inertia-link :href="route('stock.index')"
                         class="w-full flex justify-between focus:outline-none items-center text-blue-400 h-10 pl-1 hover:bg-gray-200 rounded-lg cursor-pointer">
@@ -92,7 +80,7 @@
                     </button>
 
                 </div>
-                <Setting></Setting>
+                <User></User>
                 <hr class="my-4 md:min-w-full"/>
                 <h6
                     class="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
@@ -117,7 +105,7 @@
 <script>
 import NotificationDropdown from "./NotificationDropdown.vue";
 import UserDropdown from "./UserDropdown.vue";
-import Setting from "@/Pages/components/stock/layouts/SideBarComponents/Setting";
+import User from "@/Pages/components/stock/layouts/SideBarComponents/User";
 import Category from "@/Pages/components/stock/layouts/SideBarComponents/Category";
 import Customer from "@/Pages/components/stock/layouts/SideBarComponents/Customer";
 import Expense from "@/Pages/components/stock/layouts/SideBarComponents/Expense";
@@ -141,7 +129,7 @@ export default {
     components: {
         NotificationDropdown,
         UserDropdown,
-        Setting, Category, Customer, Expense, Order, Product, Stock, Supplier
+        User, Category, Customer, Expense, Order, Product, Stock, Supplier
     },
 };
 </script>

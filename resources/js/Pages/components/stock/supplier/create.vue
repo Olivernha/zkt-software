@@ -10,7 +10,6 @@
           </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <!-- <p v-if="errors" v-for="e in errors" :key="e">{{ e }}</p> -->
           <form
             class="mt-4"
             @submit.prevent="supplierInsert"
@@ -143,13 +142,11 @@
 </template>
 
 <script>
-import Master from "@/Pages/components/stock/layouts/Master";
+
 
 export default {
   name: "create",
-  components: {
-    Master,
-  },
+
   data() {
     return {
       form: {
@@ -168,18 +165,15 @@ export default {
   },
   methods: {
     onFileSelected(event) {
-      console.log(event);
-      this.form.photo = event.target.files[0];
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        this.form.photo = event.target.result;
+        console.log(event.target.result);
+      };
+      reader.readAsDataURL(file);
     },
     supplierInsert() {
-      var data = new FormData();
-      data.append("name", this.form.name || "");
-      data.append("company", this.form.company || "");
-      data.append("email", this.form.email || "");
-      data.append("phone", this.form.phone || "");
-      data.append("address", this.form.address || "");
-      data.append("photo", this.form.photo || "");
-
       this.errors.company = "";
       this.errors.email = "";
       if (!this.form.company) {
@@ -187,7 +181,7 @@ export default {
       } else if (this.form.email && !this.form.email.includes(".com")) {
         this.errors.email = "Email is invalid";
       } else {
-        this.$inertia.post("/supplier", data).then(() => {
+        this.$inertia.post("/supplier", this.form).then(() => {
           Toast.fire({
             icon: "success",
             title: "Created successfully",

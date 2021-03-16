@@ -21,6 +21,7 @@ class CreateSuppliersTable extends Migration
             $table->string('address')->nullable();
             $table->string('photo')->nullable();
             $table->string('company');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

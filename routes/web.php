@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Stock\StockController;
 use App\Http\Controllers\Stock\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ use Inertia\Inertia;
 |
 */
 
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -33,5 +35,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['auth:sanctum', 'stock']], function () {
     Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
     Route::resource('supplier', SupplierController::class);
-
+    Route::resource('user',UserController::class);
 });

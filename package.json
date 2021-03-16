@@ -28,6 +28,7 @@
         "@popperjs/core": "2.5.1"
     },
     "dependencies": {
-        "sweetalert2": "^10.15.5"
+        "sweetalert2": "^10.15.5",
+        "vuex": "^4.0.0"
     }
 }

@@ -5,6 +5,7 @@ import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Swal from 'sweetalert2';
+import Master from "@/Pages/components/stock/layouts/Master";
 const el = document.getElementById('app');
 window.Swal=Swal;
 const Toast = Swal.mixin({
@@ -29,6 +30,7 @@ createApp({
 })
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
+    .component('Master',Master)
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });
