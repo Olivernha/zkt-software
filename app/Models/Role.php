@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+    protected $fillable = [
+       'name'
+    ];
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d'
+    ];
     public function users(){
         return $this->hasMany(User::class);
     }

@@ -22,9 +22,7 @@
             </a>
             <!-- User -->
             <ul class="md:hidden items-center flex flex-wrap list-none">
-                <li class="inline-block relative">
-                    <notification-dropdown/>
-                </li>
+
                 <li class="inline-block relative">
                     <user-dropdown/>
                 </li>
@@ -103,7 +101,7 @@
 ); }
 
 <script>
-import NotificationDropdown from "./NotificationDropdown.vue";
+
 import UserDropdown from "./UserDropdown.vue";
 import User from "@/Pages/components/stock/layouts/SideBarComponents/User";
 import Category from "@/Pages/components/stock/layouts/SideBarComponents/Category";
@@ -127,25 +125,9 @@ export default {
         }
     },
     components: {
-        NotificationDropdown,
         UserDropdown,
         User, Category, Customer, Expense, Order, Product, Stock, Supplier
-    },
+    }
 };
 </script>
-<style>
 
-.slide-enter-from, .slide-leave-to {
-    opacity: 0;
-}
-
-.slide-enter-active {
-    transition: all 0.3s ease-in;
-}
-.slide-leave-active{
-    transition: all 0.3s ease-in;
-}
-.slide-enter-to, .slide-leave-from {
-    opacity: 1;
-}
-</style>

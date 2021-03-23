@@ -18,7 +18,7 @@
 <script>
 import Master from "@/Pages/components/stock/layouts/Master";
 import OutOfStock from "@/Pages/components/stock/layouts/components/OutOfStock";
-import HeaderStats from "@/Pages/components/stock/layouts/HeaderStats";
+import HeaderStats from "@/Pages/components/stock/layouts/components/HeaderStats";
 export default {
     name: "index",
     components:{

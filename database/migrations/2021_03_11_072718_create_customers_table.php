@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('photo')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

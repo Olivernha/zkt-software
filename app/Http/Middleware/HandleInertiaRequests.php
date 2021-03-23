@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use App\Models\Role;
+use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,10 +42,21 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
+            'role' => function () {
 
+                return Auth::check() ? Auth::user()->role->name : '';
+            },
             'allrole' => function () {
                 return Role::all();
+            },
+            'categories' => function () {
+                return Category::all();
+            },
+            'suppliers' => function () {
+                return Supplier::all();
             }
+
+
         ]);
     }
 }

@@ -4,8 +4,8 @@
             <div class="flex flex-row justify-between items-center">
                 <div class="flex text-gray-700">
 
-                    <pagination :links="suppliers.links"  :previousUrl="suppliers.prev_page_url"
-                                :nextUrl="suppliers.next_page_url"></pagination>
+                    <pagination :links="$page.props.supplier.links"
+                               ></pagination>
 
                 </div>
 
@@ -75,12 +75,15 @@
 import Table from "@/Pages/components/stock/layouts/components/Table";
 import Pagination from "@/Pages/components/stock/layouts/components/Pagination";
 import SearchBox from "@/Pages/components/stock/layouts/components/SearchBox";
+import filterMixin from "@/Pages/components/stock/mixins/filterMixin";
 export default {
     name: "index",
-    props: ["suppliers"],
+
+    mixins:[
+        filterMixin('supplier')
+    ],
     data() {
         return {
-            searchList: "",
             title: "Add Suppliers",
             header: [
                 "No",
@@ -94,24 +97,10 @@ export default {
         };
     },
     methods: {
-        search(v){
-            this.searchList=v;
-        },
         deleteItem(id) {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-                if (result.value) {
-                    this.$inertia.delete("/supplier/" + id).then(() => {
-                        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-                    });
-                }
+            this.$store.dispatch('stock/delete',{
+                id: id,
+                type:'supplier'
             });
         },
     },
@@ -120,30 +109,6 @@ export default {
         Pagination,SearchBox
     },
 
-    computed: {
-
-        filterList() {
-            return this.suppliers.data.filter((data) => {
-                const company = data.company.toString();
-                const address = data.address ? data.address.toString().toLowerCase() : '';
-                const joined_at = data.created_at.toString().toLowerCase();
-                const name = data.name ? data.name.toLowerCase() : '';
-                const email = data.email ? data.email.toLowerCase() : '';
-                const phone = data.phone ? data.phone.toString().toLowerCase() : '';
-                const searchTerm = this.searchList.toLowerCase();
-
-
-                return (company.includes(searchTerm) ||
-                    address.includes(searchTerm) ||
-                    joined_at.includes(searchTerm) ||
-                    name.includes(searchTerm) ||
-                    email.includes(searchTerm) ||
-                    phone.includes(searchTerm)
-
-                );
-            });
-        },
-    },
 };
 </script>
 

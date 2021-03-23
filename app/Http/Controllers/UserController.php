@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+
 
 class UserController extends Controller
 {
@@ -76,6 +78,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = array();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['role_id'] = $request->role_name;
+        $data['password'] = Hash::make($request->password);
+        User::whereId($id)->update($data);
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -87,5 +97,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        User::where('id', $id)->delete();
+        return redirect()->route('user.index');
     }
 }

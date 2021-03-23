@@ -10,19 +10,19 @@ use Intervention\Image\Facades\Image;
 
 class SupplierController extends Controller
 {
-
+protected $route='components/stock/supplier/';
     public function index()
     {
         //
-        $suppliers = Supplier::withoutTrashed()->paginate(15);
-        return Inertia::render('components/stock/supplier/index', ['suppliers' => $suppliers]);
+        $supplier = Supplier::withoutTrashed()->paginate(15);
+        return Inertia::render($this->route.'index', ['supplier' => $supplier]);
     }
 
 
     public function create()
     {
         //
-        return Inertia::render('components/stock/supplier/create');
+        return Inertia::render($this->route.'create');
     }
 
 
@@ -73,8 +73,8 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
-        $supplier = Supplier::find($id)->first();
-        return Inertia::render('components/stock/supplier/edit', ['supplier' => $supplier]);
+        $supplier = Supplier::whereId($id)->first();
+        return Inertia::render($this->route.'edit', ['supplier' => $supplier]);
     }
 
 

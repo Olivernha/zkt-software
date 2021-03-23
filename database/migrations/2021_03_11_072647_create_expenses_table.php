@@ -18,6 +18,7 @@ class CreateExpensesTable extends Migration
             $table->text('details');
             $table->string('amount');
             $table->string('expense_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

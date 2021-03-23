@@ -23,6 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->string('photo')->nullable();
             $table->string('nrc')->nullable();
             $table->string('joining_date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

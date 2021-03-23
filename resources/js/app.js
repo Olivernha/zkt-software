@@ -6,8 +6,10 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import { InertiaProgress } from '@inertiajs/progress';
 import Swal from 'sweetalert2';
 import Master from "@/Pages/components/stock/layouts/Master";
+import store from "@/Pages/components/store";
 const el = document.getElementById('app');
 window.Swal=Swal;
+
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -30,6 +32,7 @@ createApp({
 })
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
+    .use(store)
     .component('Master',Master)
     .mount(el);
 
