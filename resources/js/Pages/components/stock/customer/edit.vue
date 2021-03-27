@@ -1,4 +1,9 @@
 <template>
+    <Master>
+        <template #default>
+            <customerform title="Edit Customer" :data="form" @submit="submitForm"></customerform>
+        </template>
+    </Master>
 
 </template>
 
@@ -18,6 +23,15 @@ export default {
                 address: this.$page.props.customer.address,
                 photo: this.$page.props.customer.photo
             },
+        }
+    },
+    methods: {
+        submitForm(v){
+            this.$store.dispatch('stock/update', {
+                id: this.$page.props.customer.id,
+                data: v,
+                type: 'customer'
+            });
         }
     }
 }

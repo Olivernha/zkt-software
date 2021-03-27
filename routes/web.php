@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Stock\CategoryController;
 use App\Http\Controllers\Stock\ExpenseController;
+use App\Http\Controllers\Stock\PosController;
 use App\Http\Controllers\Stock\ProductController;
 use App\Http\Controllers\Stock\StockController;
 use App\Http\Controllers\Stock\SupplierController;
@@ -39,9 +40,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['auth:sanctum', 'supplier']], function () {
     Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
     Route::resource('supplier', SupplierController::class);
-    Route::resource('user',UserController::class);
-    Route::resource('category',CategoryController::class);
-    Route::resource('product',ProductController::class);
-    Route::resource('expense',ExpenseController::class);
-    Route::resource('customer',CustomerController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('expense', ExpenseController::class);
+    Route::resource('customer', CustomerController::class);
+
+    Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
+    Route::post('/orderdone',[PosController::class,'OrderDone'])->name('pos.orderDone');
+//    Route::Get('/today/sell', [PosController::class,'TodaySell']);
+//    Route::Get('/today/income',  [PosController::class,'TodayIncome']);
+//    Route::Get('/today/due',  [PosController::class,'TodayDue']);
+//    Route::Get('/today/expense', [PosController::class,'TodayExpense']);
+//    Route::Get('/today/stockout',  [PosController::class,'Stockout']);
 });

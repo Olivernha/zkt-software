@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\User;
@@ -54,6 +55,9 @@ class HandleInertiaRequests extends Middleware
             },
             'suppliers' => function () {
                 return Supplier::all();
+            },
+            'customers'=>function(){
+            return Customer::all();
             }
 
 

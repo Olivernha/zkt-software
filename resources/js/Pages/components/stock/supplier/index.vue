@@ -84,7 +84,7 @@ export default {
     ],
     data() {
         return {
-            title: "Add Suppliers",
+            title: "All Suppliers",
             header: [
                 "No",
                 "company",

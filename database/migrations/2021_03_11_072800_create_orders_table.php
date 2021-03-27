@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('customer_id');
             $table->string('qty')->nullable();
             $table->string('sub_total')->nullable();
-            $table->string('vat')->nullable();
+            $table->string('tax')->nullable();
             $table->string('total')->nullable();
             $table->string('pay')->nullable();
             $table->string('due')->nullable();
