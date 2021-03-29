@@ -17,11 +17,11 @@ export default {
             order:[
                 {
                     name:'Today Order',
-                    href: ''
+                    href: route('stock.order')
                 },
                 {
                     name:'Search',
-                    href:''
+                    href:route('searchOrder.index')
                 }
             ],
         }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Stock\CategoryController;
 use App\Http\Controllers\Stock\ExpenseController;
+use App\Http\Controllers\Stock\OrderController;
 use App\Http\Controllers\Stock\PosController;
 use App\Http\Controllers\Stock\ProductController;
 use App\Http\Controllers\Stock\StockController;
@@ -48,6 +49,11 @@ Route::group(['middleware' => ['auth:sanctum', 'supplier']], function () {
 
     Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
     Route::post('/orderdone',[PosController::class,'OrderDone'])->name('pos.orderDone');
+
+    Route::get('/viewStock',[StockController::class,'viewStock'])->name('stock.view');
+    Route::get('/order',[OrderController::class,'todayOrder'])->name('stock.order');
+    Route::get('/view-details/{id}',[OrderController::class,'OrderDetails'])->name('order.details');
+    Route::get('/searchOrder',[OrderController::class,'searchOrder'])->name('searchOrder.index');
 //    Route::Get('/today/sell', [PosController::class,'TodaySell']);
 //    Route::Get('/today/income',  [PosController::class,'TodayIncome']);
 //    Route::Get('/today/due',  [PosController::class,'TodayDue']);
